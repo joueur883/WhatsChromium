@@ -13,6 +13,10 @@ public:
     explicit WebView(WebEngineProfile *profile);
     ~WebView() override;
 
+    void grantPermission(const QWebEnginePermission::PermissionType& permission);
+    void denyPermission(const QWebEnginePermission::PermissionType& permission);
+    bool isGranted(const QWebEnginePermission::PermissionType& permission);
+
     void setupPage();
 
 protected:

@@ -4,6 +4,8 @@
 #include <QUrl>
 #include <QMessageBox>
 
+#include "CentralWidget.h"
+
 WebView::WebView() {
     profile = new WebEngineProfile(this);
     page = new QWebEnginePage(profile);
@@ -38,6 +40,21 @@ QWebEngineView *WebView::createWindow(QWebEnginePage::WebWindowType type) {
     auto *view = new WebView(profile);
     view->showMaximized();
     return view;
+}
+
+void WebView::grantPermission(const QWebEnginePermission::PermissionType& permission) {
+    auto p = profile->queryPermission(QUrl("https://web.whatsapp.com/"), permission);
+    p.grant();
+}
+
+void WebView::denyPermission(const QWebEnginePermission::PermissionType& permission) {
+    auto p = profile->queryPermission(QUrl("https://web.whatsapp.com/"), permission);
+    p.deny();
+}
+
+bool WebView::isGranted(const QWebEnginePermission::PermissionType &permission) {
+    auto p = profile->queryPermission(QUrl("https://web.whatsapp.com/"), permission);
+    return p.state() == QWebEnginePermission::State::Granted;
 }
 
 void WebView::setupPage() {

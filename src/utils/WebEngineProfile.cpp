@@ -11,8 +11,8 @@ WebEngineProfile::WebEngineProfile(QObject *parent) : QWebEngineProfile("WhatsCh
 
     setPersistentCookiesPolicy(QWebEngineProfile::PersistentCookiesPolicy::ForcePersistentCookies);
 
-    std::filesystem::path persistentStoragePath = std::filesystem::path(std::getenv("HOME")) / ".local" / "WhatsChromium" / "storage";
-    std::filesystem::path cachePath = std::filesystem::path(std::getenv("HOME")) / ".local" / "WhatsChromium" / "cache";
+    std::filesystem::path persistentStoragePath = std::filesystem::path(std::getenv("HOME")) / ".local" / "share" / "WhatsChromium" / "storage";
+    std::filesystem::path cachePath = std::filesystem::path(std::getenv("HOME")) / ".local" / "share" / "WhatsChromium" / "cache";
     std::filesystem::create_directories(persistentStoragePath);
     std::filesystem::create_directories(cachePath);
 
